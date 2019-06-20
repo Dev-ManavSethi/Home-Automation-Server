@@ -40,3 +40,9 @@
 [prune]
   go-tests = true
   unused-packages = true
+
+  [metadata.heroku]
+  root-package = "github.com/Dev-ManavSethi/Home-Automation-Server"
+  go-version = "1.12.6"
+  ensure="true"
+
