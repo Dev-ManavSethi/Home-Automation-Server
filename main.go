@@ -37,7 +37,7 @@ func main() {
 
 	fmt.Println("Home Automation Server")
 
-	Listener, err := net.Listen("tcp", "0.0.0.0:50051")
+	Listener, err := net.Listen("tcp", ":50051")
 	utils.LogErrorOrSuccess(err, "Error listening at 0.0.0.0:50051", "gRPC server listening at 0.0.0.0:50051")
 
 	Server := grpc.NewServer()
