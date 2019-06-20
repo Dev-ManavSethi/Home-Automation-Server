@@ -17,6 +17,8 @@ func init() {
 
 func main() {
 
+	http.HandleFunc("/", home)
+
 	http.ListenAndServe(":"+os.Getenv("PORT"), nil)
 
 }
