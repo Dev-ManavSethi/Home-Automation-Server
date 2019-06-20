@@ -1,0 +1,225 @@
+syntax = "proto3";
+
+package services;
+
+
+message Appliance{
+	string ApplianceID=1;
+	string ApplianceName=2;
+
+	bool DigitalControl = 3;
+	bool AnalogueControl=4;
+	bool Temp = 5;
+	bool Color = 6;
+	
+	int32 DigitalValue=7;
+	int32 AnalogueValue=8;
+	
+	int32 ColorRed = 9;
+	int32 ColorBlue=10;
+	int32 ColorGreen=11;
+
+	int32 TempInCelcius=12;
+}
+
+message Portion{
+
+	string PortionID=1;
+	string PortionName=2;
+	string PortionLocation=3;
+	repeated string PortionImages=4;
+	repeated Appliance PortionAppliances=5;
+	repeated Portion SubPortion=6;
+}
+
+message Room{
+
+string RoomID = 1;
+string RoomName =2;
+string RoomLocation = 3;
+repeated string RoomImages =4;
+
+repeated Appliance RoomAppliances=5;
+repeated Room SubRooms = 6;
+
+}
+
+message Place{
+
+	string PlaceID=1;
+	string PlaceName=2;
+	string PlaceAddress=3;
+	repeated string PlaceImages=4;
+	repeated Room PlaceRooms = 5;
+}
+
+message Client{
+string ClientID=1;
+string ClientName=2;
+string ClientAddress = 3;
+int64 ClientContact = 4;
+string ClientEmail =5;
+repeated Place ClientPlaces =6;
+
+
+
+}
+
+message CreateClientRequest{
+Client Client = 1;
+
+
+}
+message CreateClientResponse{
+
+	bool Success = 1;
+	Client Client = 2;
+}
+
+message Command{
+
+	int32 Value = 1;
+	repeated int32 ColorRGB = 2;
+	int32 Temp = 3;
+
+
+}
+
+message ControlApplianceRequest{
+
+	string ClientID = 1;
+	
+	string ApplianceID = 2; 
+	Command Command =3;
+
+
+}
+
+message	ControlApplianceResponse{
+	string ClientID = 1;
+	string ApplianceID = 2;
+	bool Success = 3;
+	Command Result = 4;
+}
+
+
+message EditClientRequest{
+
+	string ClientID = 1;
+	Client NewClient=2;
+}
+message EditClientResponse{
+	bool Success = 1;
+//	Client NewClient=2;
+}
+
+message AddClientPlaceRequest{
+	string ClientID=1;
+	Place Place=2;
+}
+
+message AddClientPlaceResponse{
+	bool Success=1;
+	//Client NewClient=2;
+}
+
+message EditClientPlaceRequest{
+	string ClientID=1;
+	string PlaceID=2;
+	Place NewPlace=3;
+}
+
+message EditClientPlaceResponse{
+	bool Success=1;
+//	Client NewClient=2;
+}
+
+message AddClientRoomRequest{
+	string ClientID=1;
+	string PlaceID=2;
+	Room Room=3;
+}
+
+message AddClientRoomResponse{
+	bool Success=1;
+//	Client NewClient=2;
+}
+
+
+message EditClientRoomRequest{
+	string ClientID=1;
+	string PlaceID=2;
+	string RoomID=3;
+	Room NewRoom=4;
+}
+message EditClientRoomResponse{
+	bool Success=1;
+	//Client NewClient=2;
+}
+
+message AddClientApplianceRequest{
+	string ClientID=1;
+	string PlaceID=2;
+	string RoomID=3;
+	Appliance Appliance=4;
+}
+message AddClientApplianceResponse{
+	bool Success=1;
+	//Client NewClient=2;
+}
+
+message EditClientApplianceRequest{
+	string ClientID=1;
+	string PlaceID=2;
+	string RoomID=3;
+	string ApplianceID=4;
+	Appliance NewAppliance=5;
+}
+
+message EditClientApplianceResponse{
+	bool Success=1;
+	//Client NewClient=2;
+}
+
+message AddClientPortionRequest{
+	string ClientID=1;
+	string PlaceID=2;
+	Portion Portion=3;
+}
+
+message AddClientPortionResponse{
+	bool Success=1;
+
+}
+
+message EditClientPortionRequest{
+	string ClientID=1;
+	string PlaceID=2;
+	string PortionID=3;
+	Portion NewPortion=4;
+}
+message EditClientPortionResponse{
+	bool Success=1;
+}
+
+service ControlHome{
+
+	rpc CreateClient(CreateClientRequest) returns(CreateClientResponse);
+	rpc EditClient(EditClientRequest) returns(EditClientResponse);
+
+	rpc AddClientPlace(AddClientPlaceRequest) returns(AddClientPlaceResponse);
+	rpc EditClientPlace(EditClientPlaceRequest) returns(EditClientPlaceResponse);
+
+	rpc AddClientRoom(AddClientRoomRequest) returns(AddClientRoomResponse);
+	rpc EditClientRoom(EditClientRoomRequest) returns(EditClientRoomResponse);
+
+	rpc AddClientPortion(AddClientPortionRequest) returns(AddClientPortionResponse);
+	rpc EditClientPortion(EditClientPortionRequest) returns(EditClientPortionResponse);
+
+	rpc AddClientAppliance(AddClientApplianceRequest) returns(AddClientApplianceResponse);
+	rpc EditClientAppliance(EditClientApplianceRequest) returns(EditClientApplianceResponse);
+
+	rpc ControlAppliance (ControlApplianceRequest) returns (ControlApplianceResponse);
+
+
+}
