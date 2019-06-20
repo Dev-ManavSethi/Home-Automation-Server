@@ -4,7 +4,11 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/Dev-ManavSethi/HomeAutomtionServer/controllers"
+	"github.com/Dev-ManavSethi/Home-Automation-Server/utils"
+
+	"github.com/joho/godotenv"
+
+	"github.com/Dev-ManavSethi/Home-Automation-Server/controllers"
 )
 
 type Student struct {
@@ -15,12 +19,16 @@ type Student struct {
 
 func init() {
 
+	err := godotenv.Load(".env")
+	utils.LogErrorOrSuccess(err, "Error setting env variables from /.env", "Sucessfully set env variables from /.env")
+
 }
 
 func main() {
 
 	http.HandleFunc("/", controllers.Home)
 
-	http.ListenAndServe(":"+os.Getenv("PORT"), nil)
+	err := http.ListenAndServe(":"+os.Getenv("PORT"), nil)
+	utils.LogErrorOrSuccess(err, "Error starting HTTP server at port: "+os.Getenv("PORT"), "HTTP server listening at port: "+os.Getenv("PORT"))
 
 }
