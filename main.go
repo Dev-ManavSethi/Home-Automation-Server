@@ -3,6 +3,8 @@ package main
 import (
 	"net/http"
 	"os"
+
+	"github.com/Dev-ManavSethi/HomeAutomtionServer/controllers"
 )
 
 type Student struct {
@@ -17,7 +19,7 @@ func init() {
 
 func main() {
 
-	http.HandleFunc("/", home)
+	http.HandleFunc("/", controllers.Home)
 
 	http.ListenAndServe(":"+os.Getenv("PORT"), nil)
 
