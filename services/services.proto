@@ -205,21 +205,21 @@ message EditClientPortionResponse{
 service ControlHome{
 
 	rpc CreateClient(CreateClientRequest) returns(CreateClientResponse);
-	rpc EditClient(EditClientRequest) returns(EditClientResponse);
+	// rpc EditClient(EditClientRequest) returns(EditClientResponse);
 
-	rpc AddClientPlace(AddClientPlaceRequest) returns(AddClientPlaceResponse);
-	rpc EditClientPlace(EditClientPlaceRequest) returns(EditClientPlaceResponse);
+	// rpc AddClientPlace(AddClientPlaceRequest) returns(AddClientPlaceResponse);
+	// rpc EditClientPlace(EditClientPlaceRequest) returns(EditClientPlaceResponse);
 
-	rpc AddClientRoom(AddClientRoomRequest) returns(AddClientRoomResponse);
-	rpc EditClientRoom(EditClientRoomRequest) returns(EditClientRoomResponse);
+	// rpc AddClientRoom(AddClientRoomRequest) returns(AddClientRoomResponse);
+	// rpc EditClientRoom(EditClientRoomRequest) returns(EditClientRoomResponse);
 
-	rpc AddClientPortion(AddClientPortionRequest) returns(AddClientPortionResponse);
-	rpc EditClientPortion(EditClientPortionRequest) returns(EditClientPortionResponse);
+	// rpc AddClientPortion(AddClientPortionRequest) returns(AddClientPortionResponse);
+	// rpc EditClientPortion(EditClientPortionRequest) returns(EditClientPortionResponse);
 
-	rpc AddClientAppliance(AddClientApplianceRequest) returns(AddClientApplianceResponse);
-	rpc EditClientAppliance(EditClientApplianceRequest) returns(EditClientApplianceResponse);
+	// rpc AddClientAppliance(AddClientApplianceRequest) returns(AddClientApplianceResponse);
+	// rpc EditClientAppliance(EditClientApplianceRequest) returns(EditClientApplianceResponse);
 
-	rpc ControlAppliance (ControlApplianceRequest) returns (ControlApplianceResponse);
+	// rpc ControlAppliance (ControlApplianceRequest) returns (ControlApplianceResponse);
 
 
 }
